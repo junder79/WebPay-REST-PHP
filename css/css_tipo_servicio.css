@@ -1,0 +1,23 @@
+
+/*.button-group input {
+  display: none;
+}*/
+
+.button-group input{
+	margin-top: 10px;
+}
+.button-group input + label
+{
+
+	width: 100%;
+	border-radius: 10px;
+	background-color:#C3C4C1;
+	width: 100%;
+}
+.button-group input:checked + label,
+.button-group input:checked + label:active {
+  background-color:#FFEC68;
+  border-radius: 9px;
+  font-weight: bold;
+  
+}

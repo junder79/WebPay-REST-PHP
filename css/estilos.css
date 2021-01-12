@@ -1,0 +1,373 @@
+body
+{
+	background-color:#F7F7F7;
+}
+
+
+.titulo-elegir-direccion
+{
+
+	color: black;
+	font-size: 30px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.titulo
+{
+	
+	color: #25BDDA;
+	font-weight: bold;
+	font-size: 25px;
+	margin-top: 25px
+}
+.linea 
+{
+	margin-top: 0px;
+	width: 60px;
+	border: 2px solid #25BDDA;
+	margin-bottom: 50px;
+}
+.ingresa-datos 
+{	
+	margin-top: 40px;
+	color:#E8DD2B;
+	font-size: 40px;
+	
+}
+
+.titulo-resumen-pedido
+{
+	
+	font-size: 20px;
+}
+
+i
+{
+	
+	font-size: 17px;
+	margin-right: 7px;
+	color:#E8DD2B;
+}
+
+.icono-credit 
+{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-size: 40px;
+	color: #25BDDA;
+}
+label {
+	 color: #25BDDA !important;
+	 font-weight: bold;
+}
+.input-field input 
+{
+	border-bottom: 1px solid #E8DD2B !important;
+	box-shadow: 0 1px 0 0 #E8DD2B !important
+}
+.input-field input , textarea
+{
+	color:#25BDDA;
+	font-weight: bold;
+}
+
+/* label focus color */
+ .input-field input:focus + label {
+   color: #25BDDA !important;
+   font-weight: bold;
+ }
+
+
+
+ /* label underline focus color */
+ .row .input-field input:focus {
+   border-bottom: 1px solid #E8DD2B !important;
+   box-shadow: 0 1px 0 0 #E8DD2B !important
+ }
+.terminos 
+{
+	color: #E8DD2B;
+	font-size: 9px;
+}
+
+.btn 
+{
+	background-color: #25BDDA;
+	font-family: 'Montserrat', sans-serif;
+	 
+}
+.btn:hover {
+  background-color: #E8DD2B;
+}
+
+.btn
+{
+	color: white;
+}
+nav 
+{
+	background-color: #21C0EA;
+}
+.fa-smile 
+{
+	font-size: 120px;
+	font-weight: normal !important;
+	margin-bottom: 10px;
+}
+.formulario-iniciar-sesion
+{
+	width: 400px;
+}
+.titulo-registra-auto
+{
+	font-size: 30px;
+	font-weight: bold;
+	color: #E9DD2B;
+}
+.fa-car
+{
+	font-size: 40px;
+	color:  #21C0EA;
+}
+.registrar-auto-form 
+{
+	width: 530px;
+}
+#titulo-servicio
+{
+	font-family: 'Montserrat', sans-serif; 
+	color: black;
+	font-size:20px
+}
+.tipo-servicio
+{
+	border-radius: 10px;
+}
+
+/*.check:checked  {
+  display: block;
+}*/
+
+input[type=checkbox].hidden{
+   display:none;
+
+}
+
+
+.tipo-servicio:active{
+	background-color: red;
+
+}
+
+.tipo-servicio-border
+{
+	/*border:2.3px solid red;*/
+	background-color:#827717 ;
+	color: white;
+}
+.asiento-2 
+{
+	border:1px solid black;
+	padding-left: 0px;
+}
+.imagen-auto 
+{
+	
+	border:1px solid black;
+}
+
+
+@media (min-width: 1000px) {
+.center-align
+{
+	/*border:1px solid black;*/
+	margin-left: 300px;
+	margin-right: 300px;
+
+
+}
+.reloj
+{
+	width:400px;
+	
+}
+
+}
+
+.btn-horario-aceptar
+{
+	background-color: #E8DD2B;
+	/*border:1px solid black;*/
+	font-weight: bold;
+}
+
+
+/* CSS Validar contraseña */
+
+.validar 
+{
+	/*border:3px solid red !important;*/
+	color: red !important;
+}
+
+.titulo-resumen-pedido
+{
+	font-size: 35px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.mensaje-error
+{
+	color: red;
+}
+.titulo-solicita-servicio
+{
+	color: #21C0EA !important;
+	font-size: 25px;
+	font-family: 'Montserrat', sans-serif;
+}
+.icono-marker 
+{
+	font-size: 30px;
+	color: #21C0EA !important;
+}
+.caja-icon-placeholder
+{
+	/* border: 1px solid black; */
+	background-color: #25BDDA;
+	
+}
+.input-ayuda
+{
+	/* border: 1px solid black; */
+}
+.color-texto-tabla
+{
+	color: #21C0EA !important;
+}
+.titulo-registrar-auto
+{
+	font-size: 25px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.asientos 
+{
+	margin-top: 40px;
+	margin-left: 0px;
+}
+.asiento_2
+{
+	margin-top: 10px;
+}
+.asiento_3
+{
+	margin-top: 10px;
+}
+
+@media only screen and (max-width: 700px) {
+
+	.asientos 
+	{
+		margin-top: 40px;
+		margin-left: 0px;
+	}
+}
+
+#padre {
+	
+	border-radius: 4px;
+	height: 100%;
+	position: relative;
+	width: 100%;
+  }
+  
+  
+  #uno {
+
+	border-radius: 4px;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	height:50%;
+	width: 90%;
+  }
+.btn-buscar 
+{
+	
+	background-color: #21C0EA !important;
+	width:100% !important;
+	
+}
+.border 
+{
+	background-color: #E8DD2B !important;
+}
+.fuente-tabla-resumen-pedido
+{
+	font-family: 'Montserrat', sans-serif;
+}
+.observacion
+{
+	width:100%; 
+	margin-top:15px;
+	margin-bottom:15px;
+	border:0px; 
+	font-size:15px;
+	text-align: center;
+	background-color:#25BDDA;
+	color:white; 
+	font-style: italic;
+}
+
+/* Color Placeholder */
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    white;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    white;
+  
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    white;
+  
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    white;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:    white;
+}
+
+::placeholder { /* Most modern browsers support this now. */
+   color:    white;
+}
+.border{
+	border:1px solid black;
+}
+
+#demo {
+	border:1px solid blue;
+}
+
+
+#btn-limpieza
+{
+	font-weight:bold;
+}
+
+.mediopago
+{
+	font-size:15px; 
+	color:#25BDDA;
+	font-family:  'Montserrat', sans-serif;
+}
+.titulo-mediopago
+{
+	font-size: 20px; 
+	color:#9e9e9e;
+	font-family:  'Montserrat', sans-serif;
+}

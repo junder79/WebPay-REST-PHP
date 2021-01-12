@@ -1,0 +1,157 @@
+
+
+.btn:hover {
+    cursor: pointer !important;
+}
+
+.btn:active {
+    box-shadow: 0 1px #21B7E0 !important;
+    transform: translateY(2px) !important;
+}
+.imagen-selec:active 
+{
+    border:1px solid black;
+    background-color: aqua;
+}
+.imagen-selec
+{
+    border:2px solid red;
+}
+.btn-sık {
+    transition: all 0.2s ease;
+    background-color: 	#21B7E0 ;
+    border: 0.1px solid black !important;
+    box-shadow: 0 1px black !important;
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 7px;
+    color:white;
+}
+
+
+    btn-sık::selection{
+        background: green;
+    }
+
+input[type="radio"] {
+     position: absolute;
+  visibility: hidden;
+}
+input[type="radio"] + div {
+    position: relative;
+}
+input[type="radio"]:checked + div {
+  background-color: #ef5350;
+}
+input[type="radio"]:checked + div>span {
+  color: white;
+}
+input[type="radio"] + div>span {
+position: relative;
+top: 25%;}
+
+input[type="checkbox"] {
+     position: absolute;
+  visibility: hidden;
+}
+
+input[type="checkbox"] + div {
+    position: relative;
+}
+input[type="checkbox"]:checked + div {
+  background-color:#ffd600;
+}
+input[type="checkbox"]:checked + div>span {
+  color: black;
+}
+input[type="checkbox"] + div>span {
+position: relative;}
+
+input[type="checkbox"]:checked + div::before {
+    
+    position: absolute;
+    bottom: 18px;
+    right: 0px;
+    font-size: 21px;
+    color: 	#BDC5C5;
+}
+
+input[type="radio"]:checked + div::before {
+    font-family: FontAwesome;
+    content: "\f08d";
+    position: absolute;
+    bottom: 31px;
+    font-size: 21px;
+    color:	#BDC5C5;
+    right: -5px;
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+    animation: fall 0.5s forwards;
+}
+
+@keyframes fall {
+    100% {
+        -webkit-transform: translate(-5px,5px) rotate(30deg);
+        -moz-transform: translate(-5px,5px) rotate(30deg);
+        -o-transform: translate(-5px,5px) rotate(30deg);
+        -ms-transform: translate(-5px,5px) rotate(30deg);
+        transform: translate(-5px,5px) rotate(30deg);
+    }
+}
+
+@-moz-keyframes fall {
+    100% {
+        -webkit-transform: translate(-5px,5px) rotate(30deg);
+        -moz-transform: translate(-5px,5px) rotate(30deg);
+        -o-transform: translate(-5px,5px) rotate(30deg);
+        -ms-transform: translate(-5px,5px) rotate(30deg);
+        transform: translate(-5px,5px) rotate(30deg);
+    }
+}
+
+@-webkit-keyframes fall {
+     100% {
+        -webkit-transform: translate(-5px,5px) rotate(30deg);
+        -moz-transform: translate(-5px,5px) rotate(30deg);
+        -o-transform: translate(-5px,5px) rotate(30deg);
+        -ms-transform: translate(-5px,5px) rotate(30deg);
+        transform: translate(-5px,5px) rotate(30deg);
+    }
+}
+
+
+
+.btn-2 input:checked + div {
+    background-color:#21B7E0 !important;
+    transition: 0.8s;
+    margin-top: 4px;
+    border-radius: 30px;
+
+  }
+.btn-2 input +div 
+{
+    transition: 0.8s;
+    margin-top: 4px;
+}
+
+.btn-sık-2 {
+    /* transition: all 0.2s ease; */
+    background-color: 	#21B7E0 ;
+    border: 0.1px solid black !important;
+    box-shadow: 0 1px black !important;
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 7px;
+    color:white;
+    transition: 0.8s;
+    margin-top: 4px;
+}
+
+/* Color del checkbox cuando este Disabled */
+input[type="checkbox"]:disabled + div {
+    background-color:#757575;
+    color: #e0e0e0;
+  }
