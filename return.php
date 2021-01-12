@@ -48,7 +48,7 @@ try {
     $auto_tamano = "1";
     $horario_agenda =  "1";
     $zona_id = "1";
-
+   echo "ORDEN".$orden_compra; 
     if ($response_code ==  0) {
         /* ACTUALIZAR ESTADOS DEL SERVICIO */
 
