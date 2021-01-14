@@ -45,18 +45,20 @@ include 'aplicar_codigo.php';
 $codigoxcliente = $_SESSION['codigo_id'];
 
 
-// Se inserta Servicio 
+try {
 
-$consulta_servicio = "INSERT INTO `servicio` (`id`, `servicio_estatus_id`, `tipo_pago_id`, `cliente_id`, `washer_id`, `latitud`, `longitud`, `direccion`, 
+    // Se inserta Servicio 
+
+    $consulta_servicio = "INSERT INTO `servicio` (`id`, `servicio_estatus_id`, `tipo_pago_id`, `cliente_id`, `washer_id`, `latitud`, `longitud`, `direccion`, 
     `t_solicitado`,  `pagado`, `codigo_id`, `monto_pagado`, `informacion_adicional`, 
     `tipo_solicitud`, `fecha_agendado`, `orden` , `objetos`)
-    VALUES (NULL, '0', '2', '$usuario_id', '$washerId ', '$latitud', '$longitud', '$direccion',  '$fecha','0', '$codigoxcliente', '$total_compra', '$observacion', 'web', '$fecha_agendado', '1' , '$objetoValor');";
+    VALUES (NULL, '0', '2', '$usuario_id', $washerId ', '$latitud', '$longitud', '$direccion',  '$fecha','0', '$codigoxcliente', '$total_compra', '$observacion', 'web', '$fecha_agendado', '1' , '$objetoValor');";
 
 
-$resultadoInsertarServicio = mysqli_query($conexion, $consulta_servicio);
+    $resultadoInsertarServicio = mysqli_query($conexion, $consulta_servicio);
 
-if ($resultadoInsertarServicio) {
-    $mensaje = "Redirigiendo al método de pago...";
+
+
     // Ultima ID
     $numero = $conexion->insert_id;
     $_SESSION['numeroServicio'] =  $numero;
@@ -70,20 +72,20 @@ if ($resultadoInsertarServicio) {
 
 
     // Insertar Horario de Servicio
-    $insertar_horario_servicio = "INSERT INTO `servicioxhorario_agenda` (`id`, `servicio_id`, `washerxhorario_washer_id`, `washerxhorario_horario_agenda_id`)
+    $insertar_horario_servicio = "INSERT INTO `serdvicioxhorario_agenda` (`id`, `servicio_id`, `washerxhorario_washer_id`, `washerxhorario_horario_agenda_id`)
      VALUES (NULL, '$numero', '$washerId', '$horario_agenda');";
     $ejecutar_horario_servicio = mysqli_query($conexion, $insertar_horario_servicio);
 
-    
 
-    // $tipo_servicio = $_SESSION["array_servicio"];
-    // foreach ($tipo_servicio as $serv) {
 
-    //     $consulta_insertar = "INSERT INTO `costosxservicio` (`id`, `servicio_id`, `costo_pais_id`, `costo_zona_id`, `costo_auto_tamano_id`, `costo_producto_id`, `autoxcliente_id`, 
-    //             `precio_compra`, `precio_material_compra`) 
-    //             VALUES ('', '$numero', '1', '$zona_id', '$auto_tamano', '$serv', '$id_auto', '10', '20');";
-    //     mysqli_query($conexion, $consulta_insertar);
-    // }
+    $tipo_servicio = array(1,2,3);
+    foreach ($tipo_servicio as $serv) {
+
+        $consulta_insertar = "INSERT INTO `costosxservicio` (`id`, `servicio_id`, `costo_pais_id`, `costo_zona_id`, `costo_auto_tamano_id`, `costo_producto_id`, `autoxcliente_id`, 
+                `precio_compra`, `precio_material_compra`) 
+                VALUES ('', '$numero', '1', '$zona_id', '$auto_tamano', '$serv', '$id_auto', '10', '20');";
+        mysqli_query($conexion, $consulta_insertar);
+    }
 
 
     /* Redirigir al Sistema de Pago */
@@ -91,7 +93,7 @@ if ($resultadoInsertarServicio) {
 
     // $mensaje.= "<script>window.location = 'pagar.php';</script>";
     $return_url = 'http://localhost/webplay-rest/return.php';
-    $amount = 10000;
+    $amount = $total_compra;
     $session_id = 19929873;
     $buy_order = 8812871;
     $response = Transaction::create($buy_order, $session_id, $amount, $return_url);
@@ -103,9 +105,10 @@ if ($resultadoInsertarServicio) {
     </form>
 
 <?php
-} else {
-    $mensaje = "Error al realizar transacción, intente mas tarde.";
+
+
+} catch (Exception $e) {
+    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+    echo "Error al realizar transacción, intente mas tarde.";
 }
 
-
-echo $mensaje;

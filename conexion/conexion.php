@@ -4,7 +4,7 @@
 $host="localhost";
 $user="root";
 $password="";
-$database="lavameapp";
+$database="lavameapp_2";
 
 $conexion =mysqli_connect($host , $user , $password , $database);
 
