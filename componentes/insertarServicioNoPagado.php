@@ -52,9 +52,10 @@ try {
     $consulta_servicio = "INSERT INTO `servicio` (`id`, `servicio_estatus_id`, `tipo_pago_id`, `cliente_id`, `washer_id`, `latitud`, `longitud`, `direccion`, 
     `t_solicitado`,  `pagado`, `codigo_id`, `monto_pagado`, `informacion_adicional`, 
     `tipo_solicitud`, `fecha_agendado`, `orden` , `objetos`)
-    VALUES (NULL, '0', '2', '$usuario_id', $washerId ', '$latitud', '$longitud', '$direccion',  '$fecha','0', '$codigoxcliente', '$total_compra', '$observacion', 'web', '$fecha_agendado', '1' , '$objetoValor');";
+    VALUES (NULL, '0', '2', '$usuario_id','$washerId', '$latitud', '$longitud', '$direccion',  '$fecha','0', '$codigoxcliente', '$total_compra', '$observacion', 'web', '$fecha_agendado', '1' , '$objetoValor');";
 
 
+   
     $resultadoInsertarServicio = mysqli_query($conexion, $consulta_servicio);
 
 
@@ -72,13 +73,13 @@ try {
 
 
     // Insertar Horario de Servicio
-    $insertar_horario_servicio = "INSERT INTO `serdvicioxhorario_agenda` (`id`, `servicio_id`, `washerxhorario_washer_id`, `washerxhorario_horario_agenda_id`)
+    $insertar_horario_servicio = "INSERT INTO `servicioxhorario_agenda` (`id`, `servicio_id`, `washerxhorario_washer_id`, `washerxhorario_horario_agenda_id`)
      VALUES (NULL, '$numero', '$washerId', '$horario_agenda');";
     $ejecutar_horario_servicio = mysqli_query($conexion, $insertar_horario_servicio);
 
 
 
-    $tipo_servicio = array(1,2,3);
+    $tipo_servicio = array(1, 2, 3);
     foreach ($tipo_servicio as $serv) {
 
         $consulta_insertar = "INSERT INTO `costosxservicio` (`id`, `servicio_id`, `costo_pais_id`, `costo_zona_id`, `costo_auto_tamano_id`, `costo_producto_id`, `autoxcliente_id`, 
@@ -95,7 +96,7 @@ try {
     $return_url = 'http://localhost/webplay-rest/return.php';
     $amount = $total_compra;
     $session_id = 19929873;
-    $buy_order = 8812871;
+    $buy_order =$numero ;
     $response = Transaction::create($buy_order, $session_id, $amount, $return_url);
 ?>
 
@@ -111,4 +112,3 @@ try {
     echo 'Excepción capturada: ',  $e->getMessage(), "\n";
     echo "Error al realizar transacción, intente mas tarde.";
 }
-

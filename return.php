@@ -21,6 +21,7 @@ try {
     $monto = $response->getAmount();
     $response->getStatus();
     $orden_compra = $response->getBuyOrder();
+    echo "ORDEN DE COMPRA".$orden_compra;
     $response->getSessionId();
     $response->getAccountingDate();
     $response->getTransactionDate();
@@ -51,7 +52,7 @@ try {
     if ($response_code ==  0) {
         /* ACTUALIZAR ESTADOS DEL SERVICIO */
 
-        $updateOrderWeb = "UPDATE orders_web SET sessionId = '$token_ws', status='0' where  transaction_id = '$orden_compra'";
+        $updateOrderWeb = "UPDATE orders_web SET sessionId = '$token', status='0' where  transaction_id = '$orden_compra'";
         $resultadoUpdate = mysqli_query($conexion, $updateOrderWeb);
 
 
@@ -75,7 +76,7 @@ try {
         echo "Transaccion Realizada con exito";
         
     } else {
-        $updateOrderWeb = "UPDATE orders_web SET sessionId = '$token_ws', status='-1' where  transaction_id = '$orden_compra'";
+        $updateOrderWeb = "UPDATE orders_web SET sessionId = '$token', status='-1' where  transaction_id = '$orden_compra'";
 
         $resultadoUpdate = mysqli_query($conexion, $updateOrderWeb);
 
