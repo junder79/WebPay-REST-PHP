@@ -21,34 +21,33 @@ try {
     $monto = $response->getAmount();
     $response->getStatus();
     $orden_compra = $response->getBuyOrder();
-    echo "ORDEN DE COMPRA".$orden_compra;
     $response->getSessionId();
     $response->getAccountingDate();
     $response->getTransactionDate();
-    $_SESSION['codigo_autorizacion'] = $response->getAuthorizationCode();
+    $codigoAutorizacion = $response->getAuthorizationCode();
     $response->getPaymentTypeCode();
     $response_code = $response->getResponseCode();
     $response->getInstallmentsAmount();
     $cuatroDigitos =  $response->getCardDetail();
     $response->getBalance();
-    $_SESSION['4_digitos'] = $cuatroDigitos['card_number'];
-   
-    // Datos CLiente 
-    $usuario_id = 1;
-    $nombre_cliente = "Nicolas";
-    $apellido = "Cisterna";
-    $email_cliente = "nicolas@gmail.com";
-    $latitud = 12871212;
-    $longitud = 123321424;
-    $direccion = "TEST_DIRECCCION";
-    $observacion ="TEST_OBSERVACION";
-    $id_auto = 1;
-    $horario_seleccionado = "1";
-    $fecha_agendado = "1";
-    $monto_compra = "1";
-    $auto_tamano = "1";
-    $horario_agenda =  "1";
-    $zona_id = "1";
+    $cuatroDigitos = $cuatroDigitos['card_number'];
+    $numeroCuotas = $response->getInstallmentsNumber();
+
+    //Obtener datos del cliente
+
+    $getDataCliente =  "SELECT ow.sessionId, s.cliente_id , c.nombres , c.apellido_paterno , c.email,s.latitud, s.longitud, s.direccion, s.informacion_adicional as 'observacion' ,s.monto_pagado from orders_web ow
+    join servicio s 
+    on s.id = ow.transaction_id 
+    join cliente c 
+    on c.id = s.cliente_id
+    where ow.sessionId = $token";
+
+    $dataCliente = mysqli_query($conexion, $getDataCliente);
+    $dataCliente = mysqli_fetch_array($dataCliente);
+
+
+
+
     if ($response_code ==  0) {
         /* ACTUALIZAR ESTADOS DEL SERVICIO */
 
@@ -69,12 +68,11 @@ try {
         /* Actualizar el estado del servicio a PAGADO */
         $updateServicio = "UPDATE servicio SET servicio_estatus_id = 10,pagado = 1 where id = '$orden_compra'  ";
         mysqli_query($conexion, $updateServicio);
-        // include('correo_comprobante.php');
-        
-      
-        // header("Location:http://localhost/webplay-rest/finish.php/?token=$token");
+        include('correo_comprobante.php');
+
+
+        header("Location:http://localhost/webplay-rest/finish.php/?token=$token&digitos=$cuatroDigitos&autorizacion=$codigoAutorizacion&cuotas=$numeroCuotas");
         echo "Transaccion Realizada con exito";
-        
     } else {
         $updateOrderWeb = "UPDATE orders_web SET sessionId = '$token', status='-1' where  transaction_id = '$orden_compra'";
 
@@ -92,11 +90,11 @@ try {
 
 
         $_SESSION['codigo_id'] = 0;
-        // header("Location:http://localhost/webplay-rest/finish.php/?token=$token");
+        header("Location:http://localhost/webplay-rest/finish.php/?token=$token&digitos=$cuatroDigitos&autorizacion=$codigoAutorizacion&cuotas=$numeroCuotas");
         echo "Error al realizar transaccion";
     }
 } catch (Exception $e) {
-    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+    // echo 'Excepción capturada: ',  $e->getMessage(), "\n";
     // header("Location:http://localhost/webplay-rest/finish.php/?token=$token");
     // $updateOrderWeb = "UPDATE orders_web SET sessionId = '$token', status='-1' where  transaction_id = '$orden_compra'";
 

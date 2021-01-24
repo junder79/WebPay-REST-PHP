@@ -47,6 +47,10 @@ $codigoxcliente = $_SESSION['codigo_id'];
 
 try {
 
+
+   
+
+
     // Se inserta Servicio 
 
     $consulta_servicio = "INSERT INTO `servicio` (`id`, `servicio_estatus_id`, `tipo_pago_id`, `cliente_id`, `washer_id`, `latitud`, `longitud`, `direccion`, 
@@ -59,13 +63,21 @@ try {
     $resultadoInsertarServicio = mysqli_query($conexion, $consulta_servicio);
 
 
-
     // Ultima ID
     $numero = $conexion->insert_id;
+
+
+    $return_url = 'http://localhost/webplay-rest/return.php';
+    $amount = $total_compra;
+    $session_id = 19929873;
+    $buy_order =$numero ;
+    $response = Transaction::create($buy_order, $session_id, $amount, $return_url);
+    
+
     $_SESSION['numeroServicio'] =  $numero;
 
     $consulta = ("INSERT INTO `orders_web` (`id`, `created_at`, `updated_at`, `userId`, `email`, `nombre`, `apellido`, `amount`, `sessionId`, `status`, `zone_id`, `transaction_id`, `transaction_type_id`, `dispositivo`) 
-    VALUES (NULL, '$fecha', '$fecha', '$usuario_id', '$email_cliente', '$nombre_cliente', '$apellido', '$total_compra ', '1', '-1', '1', '$numero', '1', NULL)");
+    VALUES (NULL, '$fecha', '$fecha', '$usuario_id', '$email_cliente', '$nombre_cliente', '$apellido', '$total_compra ', '$response->token', '-1', '1', '$numero', '1', NULL)");
     mysqli_query($conexion, $consulta);
 
     // // $_SESSION['codigo_id'] = 0;
@@ -92,12 +104,6 @@ try {
     /* Redirigir al Sistema de Pago */
 
 
-    // $mensaje.= "<script>window.location = 'pagar.php';</script>";
-    $return_url = 'http://localhost/webplay-rest/return.php';
-    $amount = $total_compra;
-    $session_id = 19929873;
-    $buy_order =$numero ;
-    $response = Transaction::create($buy_order, $session_id, $amount, $return_url);
 ?>
 
     <form method="post" action="<?php echo $response->url; ?>">
