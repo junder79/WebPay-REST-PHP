@@ -108,7 +108,7 @@ try {
     // mysqli_query($conexion, $updateServicio);
     echo "Error al realizar transaccion";
 
-
+    header("Location:http://localhost/webplay-rest/finish.php/?token=$token&digitos=$cuatroDigitos&autorizacion=$codigoAutorizacion&cuotas=$numeroCuotas");
 
 
     // $_SESSION['codigo_id'] = 0;

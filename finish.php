@@ -12,7 +12,12 @@ $digitos = $_GET['digitos'];
 $autorizacion = $_GET['autorizacion'];
 $numberCuotas = $_GET['cuotas'];
 
-$consulta = "SELECT sessionId , status , amount , transaction_id from orders_web where sessionId='$token' and status=0";
+if ($token != '') {
+  $consulta = "SELECT sessionId , status , amount , transaction_id from orders_web where sessionId='$token' and status=0";
+} else {
+  $resultado = 0;
+}
+
 
 $ejecutar = mysqli_query($conexion, $consulta);
 /* Preguntamos si existe el token en Base de datos y response Code en BD */
@@ -118,6 +123,10 @@ if ($resultado > 0) {
 <?php }
 /* Comprobante Transaccion rechazada */ else {
   // echo "Rechazada"; 
+  $detalleRechaza = "SELECT sessionId , status , amount , transaction_id from orders_web where sessionId='$token'";
+  $sqlDetalleRechazo = mysqli_query($conexion, $detalleRechaza);
+  // Datos de la Transaccion 
+  $dataTransactionRechazo = mysqli_fetch_array($sqlDetalleRechazo);
 ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -180,11 +189,11 @@ if ($resultado > 0) {
                     </tr>
                     <tr>
                       <td>Monto : </td>
-                      <td>$<?php echo $dataTransaction['amount']; ?></td>
+                      <td>$<?php echo $dataTransactionRechazo['amount']; ?></td>
                     </tr>
                     <tr>
                       <td>Orden de Compra : </td>
-                      <td><?php echo $dataTransaction['transaction_id']; ?></td>
+                      <td><?php echo $dataTransactionRechazo['transaction_id']; ?></td>
                     </tr>
                     <tr>
                       <td>N° de cuotas : </td>
